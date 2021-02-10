@@ -17,16 +17,28 @@ class PermissionFragment : Fragment(R.layout.fragment_permission) {
 
         request.setOnClickListener {
             permissionManager
-                .request(Permission.Camera)
-                .rationale("I need this to shove it in your ass!")
-                .checkPermission { isGranted ->
-                    if (isGranted) {
-                        Toast.makeText(requireContext(), "Shoved it", Toast.LENGTH_SHORT).show()
+                .request(
+                    Permission.Camera,
+                    Permission.StorageRead
+                )
+                .rationale("This a rationale!")
+                .checkDetailedPermission { map ->
+                    if (map.all { it.value }) {
+                        createToast("All granted")
                     } else {
-                        Toast.makeText(requireContext(), "Didn't shove it", Toast.LENGTH_SHORT)
-                            .show()
+                        for (permission in map) {
+                            if (permission.value) {
+                                createToast("Granted: ${permission.key}")
+                            } else {
+                                println("Not granted:: ${permission.key}")
+                            }
+                        }
                     }
                 }
         }
+    }
+
+    private fun createToast(s: String) {
+        Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
     }
 }
