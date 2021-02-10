@@ -11,12 +11,14 @@ sealed class Permission(vararg val permissions: String) {
 
     // Grouped permissions
     object Location : Permission(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
-    object Storage : Permission(WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE)
+    object StorageRead : Permission(READ_EXTERNAL_STORAGE)
+    object StorageWrite : Permission(WRITE_EXTERNAL_STORAGE)
 
     companion object {
         fun from(permission: String) = when (permission) {
             ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION -> Location
-            WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE -> Storage
+            WRITE_EXTERNAL_STORAGE -> StorageWrite
+            READ_EXTERNAL_STORAGE -> StorageRead
             CAMERA -> Camera
             else -> throw IllegalArgumentException("Unknown permission: $permission")
         }
