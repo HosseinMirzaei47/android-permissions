@@ -29,7 +29,7 @@ class PermissionManager private constructor(private val fragment: WeakReference<
         return this
     }
 
-    fun request(vararg permission: Permission): PermissionManager {
+    fun request(permission: List<Permission>): PermissionManager {
         requiredPermissions.addAll(permission)
         return this
     }

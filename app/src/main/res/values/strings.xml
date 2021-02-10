@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">andorid permissions</string>
-    <string name="request_permission">Request permission</string>
     <string name="dialog_permission_title">Permission required</string>
     <string name="dialog_permission_default_message">Default message</string>
     <string name="dialog_permission_button_positive">OK</string>
+    <string name="request_with_details">Request with details</string>
+    <string name="simple_request">Simple request</string>
 </resources>
